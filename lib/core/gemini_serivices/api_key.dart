@@ -1,3 +1,8 @@
+import 'package:imageconvertor/core/services/firebase_remot_config.dart';
+
 class ApiKey {
-  static final String falKey = "a8acc2ba-3e53-4107-8e8a-c2e90369efbf:066df530c6c37688b1a276a426b50789";
+
+  static String get fallKey => FirebaseConfigs().falKey;
+
+  static final String falKey = fallKey;
 }

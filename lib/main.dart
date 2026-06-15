@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -9,17 +10,14 @@ import 'package:imageconvertor/core/routes_config/app_pages.dart';
 import 'package:imageconvertor/core/routes_config/app_routes.dart';
 import 'package:imageconvertor/features/recen_activities/recent_activities_binding.dart';
 import 'package:sizer/sizer.dart';
+import 'core/services/firebase_remot_config.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-
   ///for edge to edge status bar and navigation bar
-  SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.edgeToEdge
-  );
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -27,17 +25,22 @@ void main() async {
     ),
   );
 
+
+
   bool isFirebaseInitialized = false;
   try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     isFirebaseInitialized = true;
   } catch (e) {
     debugPrint('Firebase initialization failed: $e');
   }
 
   if (isFirebaseInitialized) {
-    await FirebaseCrashlytics.instance
-        .setCrashlyticsCollectionEnabled(true);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
     FlutterError.onError = (errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
@@ -47,6 +50,13 @@ void main() async {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
+
+    try {
+      await FirebaseConfigs().initialize();
+    } catch (e) {
+      debugPrint('Remote Config initialization failed: $e');
+    }
+
   }
 
   try {
@@ -65,7 +75,7 @@ class ImageConverterApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return  GetMaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Image Converter',
           getPages: AppPages.routes,
