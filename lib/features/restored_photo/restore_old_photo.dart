@@ -50,7 +50,7 @@ class RestoreOldPhoto extends GetView<RestoredPhotoController> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 6),
+                  SizedBox(height: 7),
                   AppText(
                     "Upload and Restored any image in seconds",
                     color: Colors.white70,
