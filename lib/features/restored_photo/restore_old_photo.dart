@@ -54,7 +54,7 @@ class RestoreOldPhoto extends GetView<RestoredPhotoController> {
                   AppText(
                     "Upload and Restored any image in seconds",
                     color: Colors.white70,
-                    fontSize: 15,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                   SizedBox(height: 2.h),
@@ -117,7 +117,7 @@ class RestoreOldPhoto extends GetView<RestoredPhotoController> {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: .1),
-                    blurRadius: 8,
+                    blurRadius: 9,
                   ),
                 ],
               ),
@@ -147,7 +147,7 @@ class RestoreOldPhoto extends GetView<RestoredPhotoController> {
           color: AppColors.white,
         ),
 
-        SizedBox(height: 0.5.h),
+        SizedBox(height: 0.7.h),
 
         AppText(
           "Choose from gallery or take a new photo.",
