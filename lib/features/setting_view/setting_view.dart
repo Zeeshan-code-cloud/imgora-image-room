@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imageconvertor/core/admob_services/ad_helper.dart';
 import 'package:imageconvertor/core/routes_config/app_routes.dart';
 import 'package:imageconvertor/features/history_view/history_view.dart';
 import 'package:imageconvertor/widgets/animated_gradient_background.dart';
+import 'package:imageconvertor/widgets/banner_widget.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -38,24 +40,48 @@ class SettingView extends StatelessWidget {
                     color: Colors.white70,
                   ),
                 ),
-                SizedBox(height: 12,),
-                settingTiles(Icons.local_activity, "Collections", Colors.white54, (){
-                  Get.to(HistoryView());
+                SizedBox(height: 12),
+                settingTiles(
+                  Icons.local_activity,
+                  "Collections",
+                  Colors.white54,
+                  () {
+                    Get.to(HistoryView());
+                  },
+                ),
+
+                settingTiles(
+                  Icons.privacy_tip_rounded,
+                  "Privacy Policy",
+                  Colors.white54,
+                  () {
+                    launchToWeb(
+                      "https://zeeshan-code-cloud.github.io/image-convertor-privacy/",
+                    );
+                  },
+                ),
+                settingTiles(
+                  Icons.terminal_sharp,
+                  "Term and Condition",
+                  Colors.white54,
+                  () {
+                    launchToWeb(
+                      "https://zeeshan-code-cloud.github.io/terms-image-convertor-/",
+                    );
+                  },
+                ),
+                settingTiles(Icons.star, "Rate the app", Colors.white54, () {
+                  launchPlayStore(
+                    "com.zeetech.image.convertor.app.imageconvertor",
+                  );
+                }),
+                settingTiles(Icons.star, "About the app", Colors.white54, () {
+                  launchToWeb(
+                    "https://zeeshan-code-cloud.github.io/about-image-convertors/",
+                  );
                 }),
 
-                settingTiles(Icons.privacy_tip_rounded, "Privacy Policy", Colors.white54, (){
-                  luanchToWeb("https://zeeshan-code-cloud.github.io/image-convertor-privacy/");
-                }),
-                settingTiles(Icons.terminal_sharp, "Term and Condition", Colors.white54, (){
-                  luanchToWeb("https://zeeshan-code-cloud.github.io/terms-image-convertor-/");
-
-                }),
-                settingTiles(Icons.star, "Rate the app", Colors.white54, (){
-      launchPlayStore("com.zeetech.image.convertor.app.imageconvertor");
-                }),
-                settingTiles(Icons.star, "About the app", Colors.white54, (){
-      luanchToWeb("https://zeeshan-code-cloud.github.io/about-image-convertors/");
-                }),
+                SizedBox(height: 12.h),
 
               ],
             ),
@@ -65,7 +91,12 @@ class SettingView extends StatelessWidget {
     );
   }
 
-  Widget settingTiles(IconData icon, String title, Color iconColor, VoidCallback Ontap) {
+  Widget settingTiles(
+    IconData icon,
+    String title,
+    Color iconColor,
+    VoidCallback Ontap,
+  ) {
     return GestureDetector(
       onTap: Ontap,
       child: Container(
@@ -76,8 +107,7 @@ class SettingView extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(20),
-          border: BoxBorder.all(color: Colors.grey.shade200,width: 0.3),
-
+          border: BoxBorder.all(color: Colors.grey.shade200, width: 0.3),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,9 +119,9 @@ class SettingView extends StatelessWidget {
                   width: 15.w,
                   decoration: BoxDecoration(
                     color: iconColor,
-                    shape: BoxShape.circle
+                    shape: BoxShape.circle,
                   ),
-                   child: Center(child: Icon(icon)),
+                  child: Center(child: Icon(icon)),
                 ),
                 SizedBox(width: 12),
                 Text(
@@ -104,19 +134,16 @@ class SettingView extends StatelessWidget {
                 ),
               ],
             ),
-            Icon(Icons.arrow_right_outlined, size: 30,color: Colors.white,),
+            Icon(Icons.arrow_right_outlined, size: 30, color: Colors.white),
           ],
         ),
       ),
     );
   }
 
-  Future<void> luanchToWeb(String url) async {
+  Future<void> launchToWeb(String url) async {
     Uri uri = Uri.parse(url);
-    if(!await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication
-    )){
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       Get.snackbar("launch error", "url are invalid");
     }
   }
@@ -126,10 +153,7 @@ class SettingView extends StatelessWidget {
       "https://play.google.com/store/apps/details?id=$packageName",
     );
 
-    if (!await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication,
-    )) {
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       Get.snackbar(
         "Error",
         "Could not open Play Store",

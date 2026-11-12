@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../core/services/trails_services.dart';
+ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
@@ -44,6 +45,7 @@ class SplashController extends GetxController {
         }
         await _registerNewUser(prefs);
       }
+
       _navigateToHome();
     } catch (e) {
       print('Error in handleUserSession: $e');
@@ -61,6 +63,8 @@ class SplashController extends GetxController {
       _firestore.collection('users').doc(deviceId).set({
         'deviceId': deviceId,
         'deviceModel': deviceData['deviceModel'],
+        "totalTrails": 3,
+        "remainingTrails": 3,
         'plan': 'free',
         'createdAt': FieldValue.serverTimestamp(),
       }).then((_) {
@@ -69,7 +73,7 @@ class SplashController extends GetxController {
 
       await prefs.setBool('isRegistered', true);
     } catch (e, stackTrace) {
-      Get.snackbar("internl error", "something went wrong with system");
+      Get.snackbar("internal error", "something went wrong with system");
     }
   }
 
@@ -88,6 +92,7 @@ class SplashController extends GetxController {
         deviceModel = info.utsname.machine;
       }
     } catch (e) {
+      Get.snackbar("error", e.toString());
      }
 
     return {
@@ -96,7 +101,15 @@ class SplashController extends GetxController {
     };
   }
 
-  void _navigateToHome() {
+  Future<void> _navigateToHome() async{
+    final deviceData = await _getDeviceData();
+    final String deviceId = deviceData['deviceId'] ?? 'unknown';
+
+    await Get.putAsync<TrailsServices>(() => TrailsServices().init());
+
+    Future.delayed(Duration(seconds: 2), () {
     Get.offAllNamed(AppRoutes.BottomNavBar);
+
+  });
   }
 }

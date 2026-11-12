@@ -2,16 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:imageconvertor/core/services/trails_services.dart';
 import 'package:imageconvertor/features/recen_activities/recent_activities_controller.dart';
 import 'package:imageconvertor/utils/app_asset.dart';
 
 class HomeController extends GetxController {
-
+  final trailservices = Get.find<TrailsServices>();
+  final remainingTrials = 0.obs;
+  final userPlan = "".obs;
   RxInt currentIndex = 0.obs;
   final recentActivityC = Get.find<RecentActivitiesController>();
   final PageController pageController = PageController();
   Timer? _autoScrollTimer;
-
 
   final conversions = [
     ConversionItem('JPG to HEIC', 'HEIC', Color(0xff64C59A)),
@@ -24,21 +26,25 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
+    // Initialize with current values
+    remainingTrials.value = trailservices.remainingTrials.value;
+    userPlan.value = trailservices.plan.value;
+    
+    // Bind to service streams to keep values synchronized in real-time
+    remainingTrials.bindStream(trailservices.remainingTrials.stream);
+    userPlan.bindStream(trailservices.plan.stream);
+    
     _startAutoScroll();
-
   }
 
   void _startAutoScroll() {
     _autoScrollTimer = Timer.periodic(
       const Duration(seconds: 4),
-          (timer) {
+      (timer) {
         if (pageController.hasClients) {
-
           final nextPage = currentIndex.value + 1;
-
-           if (nextPage >= featureImage.length) {
+          if (nextPage >= featureImage.length) {
             pageController.animateToPage(
               0,
               duration: const Duration(milliseconds: 500),
@@ -66,25 +72,26 @@ class HomeController extends GetxController {
     _startAutoScroll();
   }
 
-
+  @override
   void onClose() {
-     _autoScrollTimer?.cancel();
+    _autoScrollTimer?.cancel();
     pageController.dispose();
     super.onClose();
   }
-final featureImage = [
-  AppAsset.image6,
-  AppAsset.image5,
-  AppAsset.image7,
-  AppAsset.image4,
- ];
 
-final featureTitle = [
-  "Remove Background",
-  "Enhanced Photo",
-  "Restore Image",
-  "Text To Image",
- ];
+  final featureImage = [
+    AppAsset.image6,
+    AppAsset.image5,
+    AppAsset.image7,
+    AppAsset.image4,
+  ];
+
+  final featureTitle = [
+    "Remove Background",
+    "Enhanced Photo",
+    "Restore Image",
+    "Text To Image",
+  ];
 }
 
 class ConversionItem {

@@ -18,6 +18,8 @@ import 'package:imageconvertor/features/setting_view/setting_binding.dart';
 import 'package:imageconvertor/features/setting_view/setting_view.dart';
 import 'package:imageconvertor/features/splash_view/splash_binding.dart';
 import 'package:imageconvertor/features/splash_view/splash_view.dart';
+import 'package:imageconvertor/features/subscriptions_view/subscription_binding.dart';
+import 'package:imageconvertor/features/subscriptions_view/subscription_screen.dart';
 import 'package:imageconvertor/features/text_to_image/text_to_image_binding.dart';
 
 import '../../features/bottom_nav_bar/bottom_nav_bar.dart';
@@ -95,6 +97,11 @@ class AppPages {
       name: AppRoutes.RestoreOldPhoto,
       page: () => RestoreOldPhoto(),
       binding : RestorePhotoBinding()
+    ),
+    GetPage(
+      name: AppRoutes.SubscriptionScreen,
+      page: () => SubscriptionScreen(),
+      binding : SubscriptionBinding()
     ),
   ];
 }

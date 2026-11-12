@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imageconvertor/utils/app_asset.dart';
 import 'package:imageconvertor/widgets/animated_gradient_background.dart';
 import 'package:imageconvertor/features/history_view/history_controller.dart';
+import 'package:imageconvertor/widgets/app_text.dart';
 import 'package:imageconvertor/widgets/custom_platform_widget.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:share_plus/share_plus.dart';
@@ -37,11 +39,16 @@ class HistoryView extends StatelessWidget {
 
           final activities = controller.activities;
           if (activities.isEmpty) {
-            return const Center(
-              child: Text(
-                "No history available",
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
+            return  Center(
+              child:
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 12.h,),
+                    Image.asset(AppAsset.emptyHistory, fit: BoxFit.contain,),
+                   ],
+                  
+                ),
             );
           }
 

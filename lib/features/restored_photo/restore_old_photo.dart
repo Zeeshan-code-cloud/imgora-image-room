@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imageconvertor/features/restored_photo/restored_photo_controller.dart';
 import 'package:sizer/sizer.dart';
-import '../../utils/app_colors.dart';
+ import '../../utils/app_colors.dart';
 import '../../widgets/app_text.dart';
 
 
@@ -195,6 +195,8 @@ class RestoreOldPhoto extends GetView<RestoredPhotoController> {
             ],
           ),
         ),
+
+        SizedBox(height: 1.h,)
       ],
     );
   }

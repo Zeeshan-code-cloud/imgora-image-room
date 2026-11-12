@@ -175,48 +175,48 @@ class ConvertedFileView extends GetView<ConvertedFileController> {
 
                           const SizedBox(width: 14),
 
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: controller.saveToPhoto,
-                              child: Container(
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff5944F5),
-                                  borderRadius: BorderRadius.circular(8),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(0xff5944F5)
-                                          .withOpacity(0.28),
-                                      blurRadius: 16,
-                                      offset: const Offset(0, 8),
-                                    ),
-                                  ],
-                                ),
-                                child:  Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Obx(() => Text(
-                                      (controller.imageFormat.value.toUpperCase() == 'PDF' ||
-                                          controller.imageFormat.value.toUpperCase() == 'SVG')
-                                          ? "Save to Files"
-                                          : "Save to Photo",
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    )),
-                                    const SizedBox(width: 8),
-                                    Icon(
-                                      Icons.file_download_outlined,
-                                      color: Colors.white,
-                                      size: 26,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                          // Expanded(
+                          //   child: GestureDetector(
+                          //     onTap: controller.saveToPhoto,
+                          //     child: Container(
+                          //       height: 60,
+                          //       decoration: BoxDecoration(
+                          //         color: const Color(0xff5944F5),
+                          //         borderRadius: BorderRadius.circular(8),
+                          //         boxShadow: [
+                          //           BoxShadow(
+                          //             color: const Color(0xff5944F5)
+                          //                 .withOpacity(0.28),
+                          //             blurRadius: 16,
+                          //             offset: const Offset(0, 8),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //       child:  Row(
+                          //         mainAxisAlignment: MainAxisAlignment.center,
+                          //         children: [
+                          //           Obx(() => Text(
+                          //             (controller.imageFormat.value.toUpperCase() == 'PDF' ||
+                          //                 controller.imageFormat.value.toUpperCase() == 'SVG')
+                          //                 ? "Save to Files"
+                          //                 : "Save to Photo",
+                          //             style: const TextStyle(
+                          //               color: Colors.white,
+                          //               fontSize: 17,
+                          //               fontWeight: FontWeight.w800,
+                          //             ),
+                          //           )),
+                          //           const SizedBox(width: 8),
+                          //           Icon(
+                          //             Icons.file_download_outlined,
+                          //             color: Colors.white,
+                          //             size: 26,
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

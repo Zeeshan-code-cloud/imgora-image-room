@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imageconvertor/features/choose_file_screen/choose_file_controller.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../core/admob_services/ad_helper.dart';
+import '../../widgets/banner_widget.dart';
 
 class ChooseFileView extends GetView<ChooseFileController> {
   const ChooseFileView({super.key});
@@ -93,14 +97,11 @@ class ChooseFileView extends GetView<ChooseFileController> {
                       subtitle: "Captured by camera",
                       onTap: controller.pickFromCamera,
                     ),
-                    FileSourceCard(
-                      icon: Icons.cloud_upload_rounded,
-                      title: "Cloud",
-                      subtitle: "Google Drive / Dropbox",
-                      onTap: controller.pickFromFiles,
-                    ),
+
                   ],
                 ),
+                 SizedBox(height: 12.h),
+
               ],
             ),
           ),

@@ -12,4 +12,5 @@ class AppRoutes {
   static final String EnhancedPhoto = "/EnhancedPhoto";
   static final String TextToImage = "/TextToImage";
   static final String RestoreOldPhoto = "/RestoreOldPhoto";
+  static final String SubscriptionScreen = "/SubscriptionScreen";
 }

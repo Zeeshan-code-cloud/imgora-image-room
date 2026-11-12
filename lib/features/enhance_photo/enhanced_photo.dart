@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:imageconvertor/features/enhance_photo/enhanced_photo_controller.dart';
-import 'package:sizer/sizer.dart';
+ import 'package:imageconvertor/features/enhance_photo/enhanced_photo_controller.dart';
+ import 'package:sizer/sizer.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/app_text.dart';
 
@@ -175,7 +175,7 @@ class EnhancedPhoto extends GetView<EnhancedPhotoController> {
           ],
         ),
 
-        SizedBox(height: 8.h),
+        SizedBox(height: 4.h),
 
         /// Tip
         Padding(
@@ -194,6 +194,8 @@ class EnhancedPhoto extends GetView<EnhancedPhotoController> {
             ],
           ),
         ),
+        SizedBox(height: 4.h,),
+
       ],
     );
   }

@@ -17,7 +17,7 @@ class ApiClient {
 
 
   static const String baseUrl = 'https://fal.run';
-  static const String nanoBananaModel = 'fal-ai/nano-banana/edit';
+  static const String nanoBananaModel = 'openai/gpt-image-2.5/sunburst/edit';
   static const String bgRemovalModel = 'fal-ai/birefnet';
 
   static String get imageEditEndpoint => '$baseUrl/$nanoBananaModel';

@@ -18,13 +18,17 @@ if (keystorePropertiesFile.exists()) {
 }
 android {
     namespace = "com.zeetech.image.convertor.app.imageconvertor"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
+
     }
+
+// kotlinOptions block replaced by compilerOptions below
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
@@ -49,12 +53,22 @@ android {
         }
     }
 
+
+
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
+
 
         }
     }
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 }
 
 flutter {

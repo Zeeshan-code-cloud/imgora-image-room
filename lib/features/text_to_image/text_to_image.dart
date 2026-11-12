@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:imageconvertor/features/text_to_image/text_to_image_controller.dart';
-import 'package:sizer/sizer.dart';
+ import 'package:imageconvertor/features/text_to_image/text_to_image_controller.dart';
+ import 'package:sizer/sizer.dart';
  import '../../utils/app_icons.dart';
 import '../../widgets/app_button_widget.dart';
 import '../../widgets/app_form_field.dart';

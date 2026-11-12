@@ -59,12 +59,6 @@ void main() async {
 
   }
 
-  try {
-    await AdManager().initialize();
-  } catch (e) {
-    debugPrint('AdManager initialization failed: $e');
-  }
-
   runApp(const ImageConverterApp());
 }
 
