@@ -41,7 +41,7 @@ class RestoreOldPhoto extends GetView<RestoredPhotoController> {
                         },
                         child: Icon(Icons.arrow_back, color: Colors.white),
                       ),
-                      SizedBox(width: 12.w),
+                      SizedBox(width: 11.w),
                       AppText(
                         "Restore Old Images",
                         color: Colors.white,
